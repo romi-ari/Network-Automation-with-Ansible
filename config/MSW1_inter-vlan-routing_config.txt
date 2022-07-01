@@ -1,0 +1,25 @@
+ vlan 5 
+ name Ruang_1
+ vlan 10
+ name Ruang_2
+!
+ interface e0/1
+ switchport mode access
+ switchport access vlan 5
+!
+ interface e0/2
+ switchport mode access
+ switchport access vlan 10
+!
+ interface vlan 5
+ ip address 192.168.2.1 255.255.255.0
+ no shutdown
+!
+ interface vlan 10
+ ip address 192.168.4.1 255.255.255.0
+ no shutdown
+!
+router ospf 1
+network 192.168.122.0 0.0.0.255 area 0
+network 192.168.2.0 0.0.0.255 area 0
+network 192.168.4.0 0.0.0.255 area 0

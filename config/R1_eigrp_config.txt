@@ -1,0 +1,12 @@
+interface ethernet0/1
+ip address 192.168.25.1 255.255.255.0
+no shutdown
+!
+interface ethernet0/2
+ip address 192.168.20.1 255.255.255.0
+no shutdown
+!
+router eigrp 1
+network 192.168.25.0
+network 192.168.20.0
+!

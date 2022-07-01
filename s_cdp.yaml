@@ -1,0 +1,20 @@
+---
+- name: SHOW CDP Neighbors
+  hosts: <host>
+  gather_facts: true
+  connection: local
+
+  tasks:
+  
+   - name: Show CDP Neighbors
+     ios_command:
+      authorize: yes
+      auth_pass: cisco
+      commands:
+        - show cdp neighbors
+     register: cdp
+     
+   - name: save output to config/cdp.txt
+     copy:
+      content: "{{cdp.stdout[0]}}"
+      dest: "config/cdp.txt"

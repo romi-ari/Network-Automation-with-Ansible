@@ -1,0 +1,20 @@
+---
+- name: SHOW VLAN BRIEF
+  hosts: <host>
+  gather_facts: true
+  connection: local
+
+  tasks:
+  
+   - name: Show VLAN Brief
+     ios_command:
+      authorize: yes
+      auth_pass: cisco
+      commands:
+        - show vlan brief
+     register: vlan
+     
+   - name: save output to config/s_vlan.txt
+     copy:
+      content: "{{vlan.stdout[0]}}"
+      dest: "config/s_vlan.txt"

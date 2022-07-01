@@ -1,0 +1,15 @@
+ vlan 5 
+ name Ruang_3
+!
+ interface e0/0
+ switchport mode access
+ switchport access vlan 5
+!
+ interface vlan 5
+ ip address 192.168.6.1 255.255.255.0
+ no shutdown
+!
+router ospf 1
+network 192.168.122.0 0.0.0.255 area 0
+network 192.168.6.0 0.0.0.255 area 0
+

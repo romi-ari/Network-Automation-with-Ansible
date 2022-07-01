@@ -1,0 +1,20 @@
+---
+- name: CONFIGURATION BACKUP
+  hosts: R1
+  gather_facts: true
+  connection: local
+
+  tasks:
+  
+   - name: Show Running Config
+     ios_command:
+      authorize: yes
+      auth_pass: cisco
+      commands:
+        - show running-config
+     register: config
+     
+   - name: save output to backup/backup_config.txt
+     copy:
+      content: "{{config.stdout[0]}}"
+      dest: "config/backup_config.txt"

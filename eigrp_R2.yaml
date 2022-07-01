@@ -1,0 +1,13 @@
+---
+- name: CONFIGURATION EIGRP from TXT
+  hosts: R2
+  gather_facts: true
+  connection: local
+
+  tasks:
+  
+   - name: EIGRP Configuration
+     ios_config:
+      authorize: yes
+      auth_pass: cisco
+      src: "config/R2_eigrp_config.txt"

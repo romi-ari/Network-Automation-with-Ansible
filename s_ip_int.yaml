@@ -1,0 +1,20 @@
+---
+- name: SHOW IP INTERFACE BRIEF
+  hosts: <host>
+  gather_facts: true
+  connection: local
+
+  tasks:
+  
+   - name: Show IP Interface Brief
+     ios_command:
+      authorize: yes
+      auth_pass: cisco
+      commands:
+        - show ip int br
+     register: iib
+     
+   - name: save output to config/s_ip_int.txt
+     copy:
+      content: "{{iib.stdout[0]}}"
+      dest: "config/s_ip_int.txt"

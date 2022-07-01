@@ -1,0 +1,13 @@
+---
+- name: CONFIGURATION VLAN from TXT
+  hosts: MSW2
+  gather_facts: true
+  connection: local
+
+  tasks:
+  
+   - name: VLAN Configuration
+     ios_config:
+      authorize: yes
+      auth_pass: cisco
+      src: "config/MSW2_inter-vlan-routing_config.txt"

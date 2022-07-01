@@ -1,0 +1,11 @@
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone, 
+                  D - Remote, C - CVTA, M - Two-port Mac Relay 
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+MSW2.automation.com
+                 Eth 3/3           151             R S I  Linux Uni Eth 3/3
+R1.automation.com
+                 Eth 0/0           169              R B   Linux Uni Eth 0/0
+R2.automation.com
+                 Eth 0/0           172              R B   Linux Uni Eth 0/0
