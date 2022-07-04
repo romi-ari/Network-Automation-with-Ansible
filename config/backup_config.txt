@@ -1,71 +1,46 @@
 Building configuration...
 
-Current configuration : 2144 bytes
+Current configuration : 2092 bytes
 !
-! Last configuration change at 03:55:41 UTC Fri Jul 1 2022 by admin
+! Last configuration change at 01:55:08 UTC Mon Jul 4 2022 by admin
 !
-version 15.5
+version 15.1
 service timestamps debug datetime msec
 service timestamps log datetime msec
 no service password-encryption
+service compress-config
 !
-hostname R1
+hostname MSW1
 !
 boot-start-marker
 boot-end-marker
 !
 !
-enable secret 5 $1$I7i9$Mb/UdVXoF2bzRwBF.dS5n1
-!
-no aaa new-model
-!
-!
-!
-bsd-client server url https://cloudsso.********.com/as/token.oauth2
-mmi polling-interval 60
-no mmi auto-configure
-no mmi pvc
-mmi snmp-timeout 180
-!
-!
-!
-!
-!
-no ip icmp rate-limit unreachable
-!
-!
-!
-!
-!
-!
-!
-!
-
-
-!
-!
-!
-!
-no ip domain lookup
-ip domain name automation.com
-ip cef
-no ipv6 cef
-!
-multilink bundle-name authenticated
-!
-!
-!
-!
-!
-!
-!
-cts logging verbose
-!
+logging discriminator EXCESS severity drops 6 msg-body drops EXCESSCOLL 
+logging buffered 50000
+logging console discriminator EXCESS
+enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
 !
 username admin password 0 ********
+no aaa new-model
+no ipv6 cef
+ipv6 multicast rpf use-bgp
+no ip icmp rate-limit unreachable
 !
-redundancy
+no ip domain-lookup
+ip domain-name automation.com
+ip cef
 !
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+vlan internal allocation policy ascending
 !
 ip tcp synwait-time 5
 ! 
@@ -77,89 +52,76 @@ ip tcp synwait-time 5
 !
 !
 !
-!
-!
-!
-!
 interface Ethernet0/0
- ip address 192.168.122.2 255.255.255.0
+ duplex auto
 !
 interface Ethernet0/1
- ip address 192.168.25.1 255.255.255.0
+ switchport access vlan 5
+ switchport mode access
+ duplex auto
 !
 interface Ethernet0/2
- ip address 192.168.20.1 255.255.255.0
+ switchport access vlan 10
+ switchport mode access
+ duplex auto
 !
 interface Ethernet0/3
- no ip address
- shutdown
+ duplex auto
 !
 interface Ethernet1/0
- no ip address
- shutdown
+ duplex auto
 !
 interface Ethernet1/1
- no ip address
- shutdown
+ duplex auto
 !
 interface Ethernet1/2
- no ip address
- shutdown
+ duplex auto
 !
 interface Ethernet1/3
- no ip address
- shutdown
+ duplex auto
 !
-interface Serial2/0
- no ip address
- shutdown
- serial restart-delay 0
+interface Ethernet2/0
+ duplex auto
 !
-interface Serial2/1
- no ip address
- shutdown
- serial restart-delay 0
+interface Ethernet2/1
+ duplex auto
 !
-interface Serial2/2
- no ip address
- shutdown
- serial restart-delay 0
+interface Ethernet2/2
+ duplex auto
 !
-interface Serial2/3
- no ip address
- shutdown
- serial restart-delay 0
+interface Ethernet2/3
+ duplex auto
 !
-interface Serial3/0
- no ip address
- shutdown
- serial restart-delay 0
+interface Ethernet3/0
+ duplex auto
 !
-interface Serial3/1
- no ip address
- shutdown
- serial restart-delay 0
+interface Ethernet3/1
+ duplex auto
 !
-interface Serial3/2
- no ip address
- shutdown
- serial restart-delay 0
+interface Ethernet3/2
+ duplex auto
 !
-interface Serial3/3
- no ip address
- shutdown
- serial restart-delay 0
+interface Ethernet3/3
+ duplex auto
 !
+interface Vlan1
+ ip address 192.168.122.12 255.255.255.0
 !
-router eigrp 1
- network 192.168.20.0
- network 192.168.25.0
+interface Vlan5
+ ip address 192.168.2.1 255.255.255.0
 !
-ip forward-protocol nd
+interface Vlan10
+ ip address 192.168.4.1 255.255.255.0
 !
+router ospf 1
+ network 192.168.2.0 0.0.0.255 area 0
+ network 192.168.4.0 0.0.0.255 area 0
+ network 192.168.122.0 0.0.0.255 area 0
+!
+ip default-gateway 192.168.122.1
 !
 no ip http server
-no ip http secure-server
+!
 !
 !
 !
@@ -167,15 +129,10 @@ no ip http secure-server
 control-plane
 !
 !
-!
-!
-!
-!
-!
-!
 line con 0
  exec-timeout 0 0
  privilege level 15
+ password ********
  logging synchronous
 line aux 0
  exec-timeout 0 0
@@ -184,6 +141,5 @@ line aux 0
 line vty 0 4
  login local
  transport input ssh
-!
 !
 end

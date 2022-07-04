@@ -1,6 +1,6 @@
 ---
 - name: SHOW IP INTERFACE BRIEF
-  hosts: <host>
+  hosts: R1
   gather_facts: true
   connection: local
 

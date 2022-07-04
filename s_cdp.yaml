@@ -1,6 +1,6 @@
 ---
 - name: SHOW CDP Neighbors
-  hosts: <host>
+  hosts: MSW2
   gather_facts: true
   connection: local
 

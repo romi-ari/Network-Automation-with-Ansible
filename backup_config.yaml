@@ -1,6 +1,6 @@
 ---
 - name: CONFIGURATION BACKUP
-  hosts: R1
+  hosts: MSW1
   gather_facts: true
   connection: local
 
