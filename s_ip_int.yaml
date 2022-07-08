@@ -1,6 +1,6 @@
 ---
 - name: SHOW IP INTERFACE BRIEF
-  hosts: R1
+  hosts: MSW2
   gather_facts: true
   connection: local
 

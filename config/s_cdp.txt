@@ -4,10 +4,4 @@ Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
 
 Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
 MSW1.automation.com
-                 Eth 0/0           135             R S I  Linux Uni Eth 0/0
-R2.automation.com
-                 Eth 0/1           139              R B   Linux Uni Eth 0/1
-R2.automation.com
-                 Eth 0/0           174              R B   Linux Uni Eth 0/0
-
-Total cdp entries displayed : 3
+                 Eth 3/3           151             R S I  Linux Uni Eth 3/3

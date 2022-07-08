@@ -1,6 +1,6 @@
 ---
 - name: CONFIGURATION BACKUP
-  hosts: MSW1
+  hosts: MSW2
   gather_facts: true
   connection: local
 
@@ -14,7 +14,7 @@
         - show running-config
      register: config
      
-   - name: save output to backup/backup_config.txt
+   - name: save output to config/backup_config.txt
      copy:
       content: "{{config.stdout[0]}}"
       dest: "config/backup_config.txt"
